@@ -1,7 +1,8 @@
-require 'questions'
+require './questions'
+include EasyQs, MediumQs, HardQs
 
-Quiz
-    attr_accessor :question :answer :power
+class Quiz
+    attr_accessor :question, :answer, :power
 
     def initialize(question, answer)
         @question = question
@@ -11,19 +12,19 @@ Quiz
 end
 
 qeasy = [
-    Quiz.new(e1, "true"),
-    Quiz.new(e2, "true"),
-    Quiz.new(e3, "false")
+    Quiz.new(firstset[0], "true"),
+    Quiz.new(firstset[1], "true"),
+    Quiz.new(firstset[2], "false")
 ]
 
 qmedium =[
-    Quiz.new(m1, "a"),
-    Quiz.new(m2, "c"),
-    Quiz.new(m3, "d")
+    Quiz.new(secondset[0], "a"),
+    Quiz.new(secondset[1], "c"),
+    Quiz.new(secondset[2], "d")
 ]
 
 qhard = [
-    Quiz.new(h1, "sock"),
-    Quiz.new(h2, "horse"),
-    Quiz.new(h3, "aphasia")
+    Quiz.new(thirdset[0], "sock"),
+    Quiz.new(thirdset[1], "horse"),
+    Quiz.new(thirdset[2], "aphasia")
 ]

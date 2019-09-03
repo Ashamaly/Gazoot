@@ -1,14 +1,30 @@
 #set questions
+module EasyQs 
+    def firstset 
+        firstset = [
+ "A Ruby is red? \n  True or False?",
+ "Dogs have 4 legs? \n True or False?",
+ "Most cars are capable of flight. \n True or False?"
+    ]
+    end
+end
 
-e1 = "A Ruby is red? \n  True or False?"
-e2 = "Dogs have 4 legs? \n True or False?"
-e3 = "Most cars are capable of flight. \n True or False?"
+module MediumQs
+    def secondset 
+        secondset = [
+ "What's the outer colour of a rainbow? \n (a) Red \n (b) Blue \n (c) Green",
+ "Where is the Eiffel Tower? \n (a) Hungary \n (b) Belgium \n (c) France",
+ "What's the capital of New Zealand? \n (a) Norfolk \n (b) Auckland \n (c) Wellington"
+    ]
+    end
+end
 
-m1 = "What's the outer colour of a rainbow? \n (a) Red \n (b) Blue \n (c) Green"
-m2 = "Where is the Eiffel Tower? \n (a) Hungary \n (b) Belgium \n (c) France"
-m3 = "What's the capital of New Zealand? \n (a) Norfolk \n (b) Auckland \n (c) Wellington"
-
-h1 = "Generally speaking, what piece of clothing precedes wearing a shoe?"
-h2 = "A foal is a baby what?"
-h3 = "The inability to speak is known as what?"
-
+module HardQs
+    def thirdset 
+        thirdset = [
+ "Generally speaking, what piece of clothing precedes wearing a shoe?",
+ "A foal is a baby what?",
+ "The inability to speak is known as what?"
+    ]
+    end
+end
