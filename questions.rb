@@ -1,10 +1,11 @@
 #set questions
+#redo questions as a hash later
 module EasyQs 
     def firstset 
         firstset = [
- "A Ruby is red? \n  True or False?",
- "Dogs have 4 legs? \n True or False?",
- "Most cars are capable of flight. \n True or False?"
+ "A Ruby is red? \nTrue or False?",
+ "Dogs have 4 legs? \nTrue or False?",
+ "Most cars are capable of flight. \nTrue or False?"
     ]
     end
 end
