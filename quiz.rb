@@ -4,7 +4,7 @@ require 'artii'
 require 'colorize'
 include EasyQs, MediumQs, HardQs, Messages
 
-#class to set each question
+#module to set each question
 class Quiz
     attr_accessor :question, :answer
 
@@ -43,6 +43,7 @@ def Quizstart(qdif)
     mhp = qdif.length * 10
     php = qdif.length * 10
     num = 1
+    t1 = Time.now #set time the quiz started
     for quiz in qdif
         #display the question number
         puts "\n Question #{num} \n"
@@ -52,20 +53,35 @@ def Quizstart(qdif)
         status = "You have #{php}hp and the monster has #{mhp}hp!"
          if answer == quiz.answer
             score += 1
-            mhp -= 10
-            puts "You attack the monster for 10 damage!".colorize(:green)
-            sleep 0.5
-            puts status
+            #mhp -= 10
+            puts "You attack the monster for!".colorize(:green)
+            sleep 0.2
+            #puts status
          else
-            puts "The monster hits you for 10 damage!".colorize(:red)
-            php -= 10
-            sleep 0.5
-            puts status
+            puts "The monster hits you!".colorize(:red)
+            #php -= 10
+            sleep 0.2
+            # puts status
          end
 
     end
 
-    #display victory if monsters hp == 0 and defeat if players health == 0
+    t2 = Time.now #set the time that the quiz was completed
+    t3 = t2 - t1 #take the start time from the end time to find time elapsed
+
+    #based on speed of quiz completion, set attack modifier
+    if t3 <= 10
+        dmg = 20
+    elsif t3 <= 15
+        dmg = 10
+    else
+        dmg = 5
+    end
+
+    #attack the monster
+    mhp = mhp - (dmg * score)
+
+    #display victory if monsters hp depleted and defeat if the monster survives
     if mhp < 1
         Messages.victory()
     elsif php <= 0
@@ -74,7 +90,10 @@ def Quizstart(qdif)
         puts "\n The monster got away...".colorize(:red)
         Messages.defeat()
     end
-    puts "You got #{score} out of #{qdif.length} correct!"
+    
+    #Display the score of the quiz, time elapsed and the attack bonus they got
+    puts "You got #{score} out of #{qdif.length} correct and finished in #{t3.round} seconds!"
+    puts "That means you made #{score} attacks and dealt #{dmg} damage with each one!"
 
     #ask if player wants to play again, clearing terminal and restarting if y and aborting with goodbye message if n
     puts "Play again? [Y/N]"
@@ -95,6 +114,7 @@ def Quizstart(qdif)
 end 
 
 #use loop to ask player for difficulty and only accepts the strings "Easy", "medium" or "hard"
+
 def Difficulty()
     puts "Choose your difficulty or type 'quit' to exit!"
 puts "Easy | Medium | Hard"
