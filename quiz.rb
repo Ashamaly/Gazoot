@@ -1,7 +1,8 @@
 require './questions'
+require './messages'
 require 'artii'
 require 'colorize'
-include EasyQs, MediumQs, HardQs
+include EasyQs, MediumQs, HardQs, Messages
 
 class Quiz
     attr_accessor :question, :answer
@@ -38,10 +39,11 @@ end
 def Quizstart(qdif)
     answer = ""
     score = 0
-    mhp = 20
-    php = 20
+    mhp = 30
+    php = 30
 
     for quiz in qdif
+        # 2 different timer variations, neither work, revisit later on and try curses
         # t = Time.new(0)
         #     battlecount = 10 # seconds until auto loss
 
@@ -49,13 +51,13 @@ def Quizstart(qdif)
         #     print (t + seconds).strftime('%M:%S') + "\r"
         #     sleep 1
         #     end
-        timer = Thread.new do
-            5.downto(0) do |i|
-              puts "00:#{'%02d' % i}"
-              sleep 1
-            end
-            puts 'Time is up'
-          end
+        # timer = Thread.new do
+        #     5.downto(0) do |i|
+        #       puts "00:#{'%02d' % i}"
+        #       sleep 1
+        #     end
+        #     puts 'Time is up'
+        #   end
 
         puts quiz.question
         answer = gets.chomp()
@@ -64,31 +66,42 @@ def Quizstart(qdif)
             score += 1
             mhp -= 10
             puts "You attack the monster!".colorize(:green)
+            sleep 0.5
             puts status
          else
             puts "The monster hits you!".colorize(:red)
             php -= 10
+            sleep 0.5
             puts status
          end
 
     end
 
-    # if mhp <= 0
-    #     Victory()
-    # elsif php <= 0
-    #     Defeat()  
-    # end
-    
-
-    puts "You got #{score} out of #{qdif.length} correct!"
-    puts "Play again? [Y/N]"
-    repeat = gets.chomp.downcase
-
-    if repeat == "n"
-        abort "Thanks for playing!"
+    #display victory if monsters hp == 0 and defeat if players health == 0
+    if mhp < 1
+        Messages.victory()
+    elsif php <= 0
+        Messages.defeat()  
     else
-        system "clear"
-        Difficulty()
+        puts "\n The monster got away...".colorize(:red)
+        Messages.defeat()
+    end
+    puts "You got #{score} out of #{qdif.length} correct!"
+
+    #ask if player wants to play again, clearing terminal and restarting if y and aborting with goodbye message if n
+    puts "Play again? [Y/N]"
+
+    loop do
+        repeat = gets.chomp.downcase
+        case repeat 
+        when "n"
+            abort "Thanks for playing!"
+        when "y"
+            system "clear"
+            Difficulty()
+        else
+            puts "Type Y or N"
+        end
     end
 
 end 
@@ -115,7 +128,5 @@ loop do
 end
 
 #use artii to setup a basic welcome screen and difficulty select
-a = Artii::Base.new :font => 'slant'
-puts "            Welcome to               "
-puts a.asciify('Gazoot!')
+Messages.welcome
 Difficulty()
