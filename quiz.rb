@@ -40,6 +40,7 @@ end
 def Quizstart(qdif)
     answer = ""
     score = 0
+    mscore = 0
     mhp = qdif.length * 10
     php = qdif.length * 10
     num = 1
@@ -53,15 +54,10 @@ def Quizstart(qdif)
         status = "You have #{php}hp and the monster has #{mhp}hp!"
          if answer == quiz.answer
             score += 1
-            #mhp -= 10
             puts "You attack the monster for!".colorize(:green)
-            sleep 0.2
-            #puts status
          else
             puts "The monster hits you!".colorize(:red)
-            #php -= 10
-            sleep 0.2
-            # puts status
+            mscore += 1
          end
 
     end
@@ -80,6 +76,8 @@ def Quizstart(qdif)
 
     #attack the monster
     mhp = mhp - (dmg * score)
+    #monster fights back
+    php = php - (dmg * mscore)
 
     #display victory if monsters hp depleted and defeat if the monster survives
     if mhp < 1
@@ -93,7 +91,7 @@ def Quizstart(qdif)
     
     #Display the score of the quiz, time elapsed and the attack bonus they got
     puts "You got #{score} out of #{qdif.length} correct and finished in #{t3.round} seconds!"
-    puts "That means you made #{score} attacks and dealt #{dmg} damage with each one!"
+    puts "That means you made #{score} attacks and dealt #{dmg} damage with each one and the monster hit you #{mscore} times!"
 
     #ask if player wants to play again, clearing terminal and restarting if y and aborting with goodbye message if n
     puts "Play again? [Y/N]"
