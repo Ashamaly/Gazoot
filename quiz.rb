@@ -4,6 +4,7 @@ require 'artii'
 require 'colorize'
 include EasyQs, MediumQs, HardQs, Messages
 
+#class to set each question
 class Quiz
     attr_accessor :question, :answer
 
@@ -39,37 +40,24 @@ end
 def Quizstart(qdif)
     answer = ""
     score = 0
-    mhp = 30
-    php = 30
-
+    mhp = qdif.length * 10
+    php = qdif.length * 10
+    num = 1
     for quiz in qdif
-        # 2 different timer variations, neither work, revisit later on and try curses
-        # t = Time.new(0)
-        #     battlecount = 10 # seconds until auto loss
-
-        #     battlecount.downto(0) do |seconds|
-        #     print (t + seconds).strftime('%M:%S') + "\r"
-        #     sleep 1
-        #     end
-        # timer = Thread.new do
-        #     5.downto(0) do |i|
-        #       puts "00:#{'%02d' % i}"
-        #       sleep 1
-        #     end
-        #     puts 'Time is up'
-        #   end
-
+        #display the question number
+        puts "\n Question #{num} \n"
+        num += 1 
         puts quiz.question
-        answer = gets.chomp()
+        answer = gets.chomp.downcase() #downcase so that True and true or false and False come out correct
         status = "You have #{php}hp and the monster has #{mhp}hp!"
          if answer == quiz.answer
             score += 1
             mhp -= 10
-            puts "You attack the monster!".colorize(:green)
+            puts "You attack the monster for 10 damage!".colorize(:green)
             sleep 0.5
             puts status
          else
-            puts "The monster hits you!".colorize(:red)
+            puts "The monster hits you for 10 damage!".colorize(:red)
             php -= 10
             sleep 0.5
             puts status
@@ -94,9 +82,9 @@ def Quizstart(qdif)
     loop do
         repeat = gets.chomp.downcase
         case repeat 
-        when "n"
+        when "n", "no"
             abort "Thanks for playing!"
-        when "y"
+        when "y", "yes"
             system "clear"
             Difficulty()
         else
@@ -108,7 +96,7 @@ end
 
 #use loop to ask player for difficulty and only accepts the strings "Easy", "medium" or "hard"
 def Difficulty()
-    puts "How difficult would you like your fight to be?"
+    puts "Choose your difficulty or type 'quit' to exit!"
 puts "Easy | Medium | Hard"
 loop do
     response = gets.chomp.downcase
@@ -120,9 +108,9 @@ loop do
         when "hard"
                 Quizstart(@qhard)
         when "quit"
-            break
+            abort "Thanks for playing!"
             else
-                puts "Type Easy, Medium or Hard to continue!"
+                puts "Type Easy, Medium or Hard to continue or Quit to exit!"
         end
     end
 end
