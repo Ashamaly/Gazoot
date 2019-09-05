@@ -54,7 +54,7 @@ def Quizstart(qdif)
         status = "You have #{php}hp and the monster has #{mhp}hp!"
          if answer == quiz.answer
             score += 1
-            puts "You attack the monster for!".colorize(:green)
+            puts "You attack the monster!".colorize(:green)
          else
             puts "The monster hits you!".colorize(:red)
             mscore += 1

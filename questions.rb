@@ -4,7 +4,7 @@ module EasyQs
     def firstset 
         firstset = [
  "A Ruby is red? \nTrue or False?",
- "Dogs have 4 legs? \nTrue or False?",
+ "The colour blue is blue. \nTrue or False?",
  "Most cars are capable of flight. \nTrue or False?"
     ]
     end
