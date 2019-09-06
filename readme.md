@@ -21,3 +21,13 @@ Initially my first idea for an application was a workout tracker but I struggled
 Gazoot starts initially with a welcome screen before the player is prompted to select a difficulty, with each difficulty has a different set of questions to answer. 
 
 <img src="img/welcome.png">
+
+Selecting a difficulty will then bring the user to the quiz, where they can input their desired answer to each question. A message will be displayed depending on whether or not the answer is correct
+
+<img src="img/questions.png">
+
+After the quiz has been completed, a screen will appear with details of how many answers were correct, the attack bonus they achieved and if they were successful in defeating the monster or if they failed.
+
+<img src="img/victory.png">
+
+<img src="img/defeat.png">
