@@ -19,4 +19,5 @@ Initially my first idea for an application was a workout tracker but I struggled
 ## User Interaction
 
 Gazoot starts initially with a welcome screen before the player is prompted to select a difficulty, with each difficulty has a different set of questions to answer. 
+
 ![welcome screen](https://raw.githubusercontent.com/Ashamaly/Gazoot/tree/master/img/welcome.png)
