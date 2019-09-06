@@ -4,7 +4,7 @@ require 'artii'
 require 'colorize'
 include EasyQs, MediumQs, HardQs, Messages
 
-#module to set each question
+#class to set each question, refactor this shit
 class Quiz
     attr_accessor :question, :answer
 
@@ -17,6 +17,7 @@ end
 
 #question sets for each difficulty
 #basic but works, would be better off implementing a hash with the question as a key and the answer as a value
+#modularize this
 @qeasy = [
     Quiz.new(firstset[0], "true"),
     Quiz.new(firstset[1], "true"),
@@ -119,13 +120,13 @@ puts "Easy | Medium | Hard"
 loop do
     response = gets.chomp.downcase
         case response
-        when "easy"
+        when "easy", "e"
                 Quizstart(@qeasy)
-        when "medium"
+        when "medium", "med", "m"
                 Quizstart(@qmedium)
-        when "hard"
+        when "hard", "h"
                 Quizstart(@qhard)
-        when "quit"
+        when "quit", "q"
             abort "Thanks for playing!"
             else
                 puts "Type Easy, Medium or Hard to continue or Quit to exit!"
