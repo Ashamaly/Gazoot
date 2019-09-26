@@ -4,6 +4,7 @@ require 'artii'
 require 'colorize'
 include EasyQs, MediumQs, HardQs, Messages
 
+#test
 #class to set each question, refactor this shit
 class Quiz
     attr_accessor :question, :answer
